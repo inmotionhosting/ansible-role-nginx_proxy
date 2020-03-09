@@ -1,0 +1,50 @@
+---
+# tasks file for inmotion.nginx-proxy
+
+- name: (NGINX) Include variables and set facts
+  include: facts.yml
+
+- name: (NGINX) Include os_family tasks
+  include: "{{ ansible_os_family }}.yml"
+  vars:
+    targets:
+      - Debian
+      - RedHat
+  when: ansible_os_family in targets
+
+- name: (NGINX) Install NGINX packages
+  package:
+    name: "{{ nginx_packages }}"
+    state: present
+
+- name: (NGINX) Create NGINX configuration directories
+  file:
+    name: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/nginx
+    - /etc/nginx/conf.d
+    - /etc/nginx/logs
+    - /var/nginx/cache
+    - /var/nginx/cache/{{ nginx_cache_name }}
+
+- name: (NGINX) Create pidfile
+  file:
+    name: /var/run/nginx.pid
+    state: touch
+  changed_when: false
+
+- name: (NGINX) Configure NGINX
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart nginx
+    - enable nginx
+  with_items:
+    - etc/nginx/nginx.conf
+    - etc/nginx/mime.types
+    - etc/nginx/proxy.conf

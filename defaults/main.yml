@@ -1,0 +1,142 @@
+---
+# defaults file for inmotion.nginx-proxy
+
+nginx_daemon: nginx
+nginx_group: nobody
+nginx_name: nginx
+nginx_user: nginx
+
+nginx_packages:
+  - nginx
+
+nginx_config: /etc/nginx/nginx.conf
+nginx_pid: /var/run/nginx.pid
+nginx_port_http: 80
+nginx_port_https: 443
+nginx_proxy_pass: http://localhost:8080
+
+nginx_mime_includes: /etc/nginx/mime.types
+nginx_module_includes: /usr/share/nginx/modules/*.conf
+nginx_proxy_includes: /etc/nginx/proxy.conf
+nginx_site_includes: /etc/nginx/conf.d/*.conf
+
+#
+# Caching
+#
+
+nginx_cache_enable: true
+nginx_cache_inactive: 1h
+nginx_cache_name: "sitecache"
+nginx_cache_time_default: 5
+nginx_cache_time_404: 10
+
+nginx_etag: true
+nginx_ssi: false
+
+nginx_open_file_cache_errors: false
+nginx_open_file_cache_inactive: 8m
+nginx_open_file_cache_max: 16536
+nginx_open_file_cache_min_uses: 1
+nginx_open_file_cache_valid: "5m"
+
+#
+# Compression
+#
+
+nginx_gzip_enabled: true
+nginx_gzip_comp_level: 9
+nginx_gzip_min_length: 256
+
+#
+# Connection
+#
+
+nginx_hsts_enable: false
+nginx_http2_enable: true
+nginx_http2_idle_timeout: "5m"
+nginx_keepalive_requests: 100
+nginx_keepalive_timeout: 30
+nginx_multi_accept: true
+nginx_reset_timedout_connection: true
+nginx_sendfile: true
+nginx_tcp_nodelay: true
+nginx_tcp_nopush: true
+
+#
+# http2
+#
+
+http2_idle_timeout: 5m
+
+#
+# Logging
+#
+
+nginx_access_log: /var/log/nginx/access.log
+nginx_error_log: /var/log/nginx/error.log
+
+nginx_log_format_main: >-
+  '$remote_addr - $remote_user [$time_local] "$request" $status
+  $body_bytes_sent "$http_referer" "$http_user_agent"
+  "$http_x_forwarded_for"'
+
+#
+# Proxy
+#
+
+nginx_proxy_buffers: [4, 32k]
+nginx_proxy_buffer_size: 32k
+nginx_proxy_busy_buffers_size: 64k
+nginx_proxy_cache_key: "$scheme$request_method$host$request_uri"
+nginx_proxy_connect_timeout: 90
+nginx_proxy_read_timeout: 90
+nginx_proxy_redirect: false
+nginx_proxy_send_timeout: 90
+
+#
+# Ratelimit
+#
+
+nginx_ratelimit: 8
+nginx_ratelimit_burst: 8
+nginx_ratelimit_nodelay: true
+nginx_ratelimit_zone: "rlzone"
+nginx_ratelimit_paths:
+  - ".*login\\.php"
+  - ".*xmlrpc\\.php"
+  - ".*wp-cron\\.php"
+
+#
+# SSL
+#
+
+nginx_ssl_enable: true
+
+nginx_ssl_ciphers:
+  - EECDH+AESGCM
+  - EDH+AESGCM
+
+nginx_ssl_dhparam: /var/nginx/dhparams.pem
+
+nginx_ssl_protocols:
+  - TLSv1.2
+  - TLSv1.3
+
+nginx_ssl_session_cache: "shared:SSL:32m"
+
+#
+# Static
+#
+
+nginx_static_content_accel: true
+nginx_static_content_expires: "7d"
+nginx_static_content_paths: []
+
+#
+# Workers
+#
+
+nginx_worker_connections: 4096
+nginx_worker_processes: auto
+nginx_worker_rlimit_nofile: 8192
+nginx_worker_shutdown_timeout: 4

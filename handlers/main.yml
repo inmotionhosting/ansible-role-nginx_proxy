@@ -1,0 +1,12 @@
+---
+# handlers file for inmotion.nginx-proxy
+
+- name: restart nginx
+  service:
+    name: "{{ nginx_daemon }}"
+    state: restarted
+
+- name: enable nginx
+  service:
+    name: "{{ nginx_daemon }}"
+    enabled: true

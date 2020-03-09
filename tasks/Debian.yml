@@ -1,0 +1,20 @@
+---
+- name: (Debian) Create nginx group
+  group:
+    name: "{{ nginx_group }}"
+    state: present
+
+- name: (Debian) Create nginx user
+  user:
+    name: "{{ nginx_user }}"
+    state: present
+    create_home: false
+    groups:
+      - nobody
+
+- name: (Debian) Silently stop Apache if running
+  service:
+    name: "apache2"
+    state: stopped
+  changed_when: false
+  failed_when: false

@@ -41,10 +41,20 @@
     owner: root
     group: root
     mode: 0600
-  notify:
-    - restart nginx
-    - enable nginx
   with_items:
     - etc/nginx/nginx.conf
     - etc/nginx/mime.types
     - etc/nginx/proxy.conf
+
+- name: (NGINX) Start and enable NGINX
+  service:
+    name: "{{ nginx_daemon }}"
+    state: started
+    enabled: true
+
+- name: (NGINX) Silently start and enable Apache
+  service:
+    name: "{{ apache_daemon }}"
+    state: started
+    enabled: true
+  changed_when: false

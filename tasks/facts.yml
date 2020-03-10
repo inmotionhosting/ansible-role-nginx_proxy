@@ -15,7 +15,7 @@
     - ansible_os_family == "RedHat"
     - apache_daemon is undefined
 
-- name: (RedHat) Handle errata
+- name: (Debian) Handle errata
   set_fact:
     apache_daemon: apache2
   when:

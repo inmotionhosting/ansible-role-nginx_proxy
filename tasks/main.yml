@@ -58,3 +58,4 @@
     state: started
     enabled: true
   changed_when: false
+  failed_when: false

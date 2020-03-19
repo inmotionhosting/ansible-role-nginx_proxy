@@ -1,9 +1,9 @@
-inmotion.nginx-proxy
+inmotionhosting.nginx_proxy
 =========
 
 Modular Ansible Role for deploying and configuring Nginx as a reverse-proxy
 
-[![Build Status](https://travis-ci.org/inmotionhosting/inmotion.nginx-proxy.png?branch=master)](https://travis-ci.org/inmotionhosting/inmotion.nginx-proxy)
+[![Build Status](https://travis-ci.org/inmotionhosting/nginx_proxy.png?branch=master)](https://travis-ci.org/inmotionhosting/nginx_proxy)
 
 Requirements
 ------------
@@ -22,7 +22,7 @@ Example Playbook
 
     - hosts: www
       roles:
-         - role: inmotion.nginx-proxy
+         - role: inmotionhosting.nginx_proxy
 
 License
 -------

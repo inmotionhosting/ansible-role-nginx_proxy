@@ -5,7 +5,7 @@ services:
 
 env:
   global:
-    - ROLE_NAME="inmotion.nginx-proxy"
+    - ROLE_NAME="inmotionhosting.nginx_proxy"
   matrix:
     - MOLECULE_DISTRO="centos-7"
     - MOLECULE_DISTRO="centos-8"

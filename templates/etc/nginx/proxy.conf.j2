@@ -5,7 +5,11 @@ proxy_buffers           {{ nginx_proxy_buffers|join(' ') }};
 proxy_buffer_size       {{ nginx_proxy_buffer_size }};
 proxy_busy_buffers_size {{ nginx_proxy_busy_buffers_size }};
 
-{% if nginx_cache_enable %}
+{# TODO: Fix Debian 8 warning rather than ignoring it
+nginx: [emerg] the size 134217728 of shared memory zone "sitecache"
+conflicts with already declared size 0 in /etc/nginx/proxy.conf:14 #}
+{% if nginx_cache_enable
+    and ansible_distribution_major_version is version('9', '>=') %}
 proxy_cache             {{ nginx_cache_name }};
 proxy_cache_key         {{ nginx_proxy_cache_key }};
 proxy_cache_lock        on;
@@ -29,7 +33,9 @@ proxy_set_header        X-Real-IP           $remote_addr;
 proxy_set_header        X-Forwarded-For     $proxy_add_x_forwarded_for;
 proxy_set_header        X-Forwarded-Proto   $scheme;
 
-proxy_ssl_verify        off;
-proxy_ssl_session_reuse off;
+{% if ansible_distribution_major_version is version('9', '>=') %}
 proxy_ssl_name          $host;
+proxy_ssl_verify        off;
 proxy_ssl_server_name   on;
+{% endif %}
+proxy_ssl_session_reuse off;

@@ -14,18 +14,118 @@ Requirements
 
 Role Variables
 --------------
-In this role, we load the defaults and then modify them as needed to
-support other platforms.
 
-### Defaults
-This role uses [defaults/main.yml](defaults/main.yml) to declare
-"global" variables using CentOS 7.x as our base.  This allows defining
-a core set of variables that can be trivially modified.
+| Variable | Description |
+| -------- | ----------- |
+| nginx_daemon | Default: `nginx`
+| nginx_group | Default: `nobody`
+| nginx_name | Default: `nginx`
+| nginx_user | Default: `nginx`
+| nginx_packages | Default: `[nginx]`
+| nginx_config | Default: `/etc/nginx/nginx.conf`
+| nginx_pid | Default: `/var/run/nginx.pid`
+| nginx_port_http | Default: `80`
+| nginx_port_https | Default: `443`
+| nginx_proxy_pass | Default: `http://localhost:8080`
+| nginx_mime_includes | Default: `/etc/nginx/mime.types`
+| nginx_module_includes | Default: `/usr/share/nginx/modules/*.conf`
+| nginx_proxy_includes | Default: `/etc/nginx/proxy.conf`
+| nginx_site_includes | Default: `/etc/nginx/conf.d/*.conf`
 
-### Vars
-This role uses [tasks/facts.yml](tasks/facts.yml) to handle variances
-between operating systems and their derivatives, which in the case of
-nginx is mainly one-off errata.
+### Caching
+| Variable | Description |
+| -------- | ----------- |
+| nginx_cache_enable | Default: `true`
+| nginx_cache_inactive | Default: `1h`
+| nginx_cache_name | Default: `sitecache`
+| nginx_cache_time_default | Default: `5`
+| nginx_cache_time_404 | Default: `10`
+| nginx_etag | Default: `true`
+| nginx_ssi | Default: `false`
+| nginx_open_file_cache_errors | Default: `false`
+| nginx_open_file_cache_inactive | Default: `8m`
+| nginx_open_file_cache_max | Default: `16536`
+| nginx_open_file_cache_min_uses | Default: `1`
+| nginx_open_file_cache_valid | Default: `5m`
+
+### Compression
+| Variable | Description |
+| -------- | ----------- |
+| nginx_gzip_enabled | Default: `true`
+| nginx_gzip_comp_level | Default: `9`
+| nginx_gzip_min_length | Default: `256`
+
+### Connection
+| Variable | Description |
+| -------- | ----------- |
+| nginx_hsts_enable | Default: `false`
+| nginx_http2_enable | Default: `true`
+| nginx_http2_idle_timeout | Default: `5m`
+| nginx_keepalive_requests | Default: `100`
+| nginx_keepalive_timeout | Default: `30`
+| nginx_multi_accept | Default: `true`
+| nginx_reset_timedout_connection | Default: `true`
+| nginx_sendfile | Default: `true`
+| nginx_tcp_nodelay | Default: `true`
+| nginx_tcp_nopush | Default: `true`
+
+### http2
+| Variable | Description |
+| -------- | ----------- |
+| http2_idle_timeout | Default: `5m`
+
+### Logging
+| Variable | Description |
+| -------- | ----------- |
+| nginx_access_log | Default: `/var/log/nginx/access.l`
+| nginx_error_log | Default: `/var/log/nginx/error.l`
+| nginx_log_format_main | Default: `$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"`
+
+### Proxy
+| Variable | Description |
+| -------- | ----------- |
+| nginx_proxy_buffers | Default: `[4, 32k]`
+| nginx_proxy_buffer_size | Default: `32k`
+| nginx_proxy_busy_buffers_size | Default: `64k`
+| nginx_proxy_cache_key | Default: `"$scheme$request_method$host$request_uri"`
+| nginx_proxy_connect_timeout | Default: `90`
+| nginx_proxy_read_timeout | Default: `90`
+| nginx_proxy_redirect | Default: `false`
+| nginx_proxy_send_timeout | Default: `90`
+
+### Ratelimit
+| Variable | Description |
+| -------- | ----------- |
+| nginx_ratelimit | Default: `8`
+| nginx_ratelimit_burst | Default: `8`
+| nginx_ratelimit_nodelay | Default: `true`
+| nginx_ratelimit_zone | Default: `rlzone`
+| nginx_ratelimit_paths | Default: `[".*login\\.php", ".*xmlrpc\\.php", ".*wp-cron\\.php"]`
+
+### SSL
+| Variable | Description |
+| -------- | ----------- |
+| nginx_ssl_enable | Default: `true`
+| nginx_ssl_ciphers | Default: `["EECDH+AESGCM", "EDH+AESGCM"]`
+| nginx_ssl_dhparam | Default: `/var/nginx/dhparams.pem`
+| nginx_ssl_protocols | Default: `["TLSv1.2", "TLSv1.3"]`
+| nginx_ssl_session_cache | Default: `"shared:SSL:32m"`
+
+### Static
+| Variable | Description |
+| -------- | ----------- |
+| nginx_static_content_accel | Default: `true`
+| nginx_static_content_expires | Default: `7d`
+| nginx_static_content_paths | Default: `[]`
+
+### Workers
+| Variable | Description |
+| -------- | ----------- |
+| nginx_worker_connections | Default: `4096`
+| nginx_worker_processes | Default: `auto`
+| nginx_worker_rlimit_nofile | Default: `8192`
+| nginx_worker_shutdown_timeout | Default: `4`
+
 
 Dependencies
 ------------
@@ -47,4 +147,4 @@ GPLv3
 Author Information
 ------------------
 
-InMotion Hosting
+[InMotion Hosting](https://inmotionhosting.com)

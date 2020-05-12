@@ -32,3 +32,21 @@
     or
     (ansible_distribution == "Debian"
     and ansible_distribution_version is version('9', '=='))
+
+- name: (Let's Encrypt) Add Nginx to Let's Encrypt services
+  set_fact:
+    certbot_stop_services: "{{ certbot_stop_services + [nginx_daemon] }}"
+  when:
+    - use_letsencrypt is defined
+    - use_letsencrypt
+    - certbot_stop_services is defined
+    - nginx_daemon not in certbot_stop_services
+
+- name: (Let's Encrypt) Define Nginx as a Let's Encrypt service
+  set_fact:
+    certbot_stop_services:
+      - "{{ nginx_daemon }}"
+  when:
+    - use_letsencrypt is defined
+    - use_letsencrypt
+    - certbot_stop_services is not defined

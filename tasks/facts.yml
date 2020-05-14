@@ -42,7 +42,7 @@
     - certbot_stop_services is defined
     - nginx_daemon not in certbot_stop_services
 
-- name: (Let's Encrypt) Define Nginx as a Let's Encrypt service
+- name: (Let's Encrypt) Initialize Let's Encrypt services with Nginx
   set_fact:
     certbot_stop_services:
       - "{{ nginx_daemon }}"

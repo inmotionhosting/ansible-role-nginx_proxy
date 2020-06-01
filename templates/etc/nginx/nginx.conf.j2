@@ -103,7 +103,9 @@ http {
     # SSL
     ssl_ciphers             "{{ nginx_ssl_ciphers|join(' ') }}";
     ssl_ecdh_curve          secp384r1;
-    #ssl_dhparam             /var/nginx/dhparams.pem;
+{% if dh_path %}
+    ssl_dhparam             {{ dh_path }};
+{% endif %}
     ssl_prefer_server_ciphers on;
     ssl_protocols           {{ nginx_ssl_protocols|join(' ') }};
     ssl_session_cache       {{ nginx_ssl_session_cache }};

@@ -94,19 +94,6 @@ nginx_proxy_redirect: false
 nginx_proxy_send_timeout: 90
 
 #
-# Ratelimit
-#
-
-nginx_ratelimit: 8
-nginx_ratelimit_burst: 8
-nginx_ratelimit_nodelay: true
-nginx_ratelimit_zone: "rlzone"
-nginx_ratelimit_paths:
-  - ".*login\\.php"
-  - ".*xmlrpc\\.php"
-  - ".*wp-cron\\.php"
-
-#
 # SSL
 #
 

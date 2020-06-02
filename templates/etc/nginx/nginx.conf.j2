@@ -96,8 +96,8 @@ http {
 {% if nginx_ratelimit is defined and nginx_ratelimit > 0 and nginx_ratelimit_paths is defined and nginx_ratelimit_paths | length > 0 %}
     # Ratelimit
     limit_req_zone          $binary_remote_addr
-                            zone=default_rlzone:1m
-                            rate={{ nginx_ratelimit }}r/m;
+                            zone={{ nginx_ratelimit_zone }}:1m
+                            rate={{ nginx_ratelimit }}r/s;
 
 {% endif %}
     # SSL

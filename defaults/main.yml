@@ -123,7 +123,7 @@ nginx_static_content_paths: []
 # Workers
 #
 
-nginx_worker_connections: 4096
+nginx_worker_connections: 512
 nginx_worker_processes: auto
-nginx_worker_rlimit_nofile: 8192
+nginx_worker_rlimit_nofile: 1024
 nginx_worker_shutdown_timeout: 4

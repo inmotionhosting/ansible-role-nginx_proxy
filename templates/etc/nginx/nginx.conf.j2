@@ -5,6 +5,7 @@ user                        {{ nginx_user }} {{ nginx_group }};
 error_log                   {{ nginx_error_log }};
 pcre_jit                    on;
 pid                         {{ nginx_pid }};
+worker_rlimit_nofile        {{ nginx_worker_rlimit_nofile }};
 {% if ansible_distribution_major_version is version('9', '>=') %}
 worker_cpu_affinity         auto;
 {% endif %}

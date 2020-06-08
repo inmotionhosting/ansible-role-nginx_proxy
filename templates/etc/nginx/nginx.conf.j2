@@ -5,6 +5,7 @@ user                        {{ nginx_user }} {{ nginx_group }};
 error_log                   {{ nginx_error_log }};
 pcre_jit                    on;
 pid                         {{ nginx_pid }};
+worker_rlimit_nofile        {{ nginx_worker_rlimit_nofile }};
 {% if ansible_distribution_major_version is version('9', '>=') %}
 worker_cpu_affinity         auto;
 {% endif %}
@@ -96,14 +97,16 @@ http {
 {% if nginx_ratelimit is defined and nginx_ratelimit > 0 and nginx_ratelimit_paths is defined and nginx_ratelimit_paths | length > 0 %}
     # Ratelimit
     limit_req_zone          $binary_remote_addr
-                            zone=default_rlzone:1m
-                            rate={{ nginx_ratelimit }}r/m;
+                            zone={{ nginx_ratelimit_zone }}:1m
+                            rate={{ nginx_ratelimit }}r/s;
 
 {% endif %}
     # SSL
     ssl_ciphers             "{{ nginx_ssl_ciphers|join(' ') }}";
     ssl_ecdh_curve          secp384r1;
-    #ssl_dhparam             /var/nginx/dhparams.pem;
+{% if dh_path is defined and dh_path | length > 0 %}
+    ssl_dhparam             {{ dh_path }};
+{% endif %}
     ssl_prefer_server_ciphers on;
     ssl_protocols           {{ nginx_ssl_protocols|join(' ') }};
     ssl_session_cache       {{ nginx_ssl_session_cache }};

@@ -15,14 +15,14 @@
     - ansible_os_family == "RedHat"
     - apache_daemon is undefined
 
-- name: (Debian) Handle errata
+- name: (Debian) Handle Apache errata
   set_fact:
     apache_daemon: apache2
   when:
     - ansible_os_family == "Debian"
     - apache_daemon is undefined
 
-- name: (Debian) Handle errata
+- name: (Debian) Handle SSL errata
   set_fact:
     nginx_ssl_protocols:
       - TLSv1.2

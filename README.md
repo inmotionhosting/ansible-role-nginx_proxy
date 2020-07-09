@@ -1,19 +1,22 @@
-inmotionhosting.nginx_proxy
-=========
+[![Build Status](https://travis-ci.org/inmotionhosting/ansible-role-nginx_proxy.png?branch=master)](https://travis-ci.org/inmotionhosting/ansible-role-nginx_proxy) [![GPL-3.0 License](https://img.shields.io/github/license/inmotionhosting/ansible-role-nginx_proxy.svg?color=blue)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/inmotionhosting/ansible-role-nginx_proxy.svg)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/stargazers)
+
+# Ansible Role: Nginx Proxy
 
 Modular Ansible Role for deploying and configuring Nginx as a reverse-proxy
 
-[![Build Status](https://travis-ci.org/inmotionhosting/ansible-role-nginx_proxy.png?branch=master)](https://travis-ci.org/inmotionhosting/ansible-role-nginx_proxy)
-
-Requirements
-------------
+## Requirements
 
 * CentOS 7.x or later
 * Debian 9 or later
-* Ubuntu 16.04.x LTS or later
+* Ubuntu 16.04 LTS or later
 
-Role Variables
---------------
+## Dependencies
+
+None.
+
+## Role Variables
+
+Available variables are listed below with their default values (you can also see `defaults/main.yml`)
 
 | Variable | Description |
 | -------- | ----------- |
@@ -126,25 +129,18 @@ Role Variables
 | nginx_worker_rlimit_nofile | Default: `8192`
 | nginx_worker_shutdown_timeout | Default: `4`
 
+## Example Playbook
 
-Dependencies
-------------
+```yaml
+- hosts: www
+  roles:
+     - role: inmotionhosting.nginx_proxy
+```
 
-None.
-
-Example Playbook
-----------------
-
-    - hosts: www
-      roles:
-         - role: inmotionhosting.nginx_proxy
-
-License
--------
+## License
 
 GPLv3
 
-Author Information
-------------------
+## Author Information
 
 [InMotion Hosting](https://inmotionhosting.com)

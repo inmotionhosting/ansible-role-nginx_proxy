@@ -20,6 +20,9 @@ nginx_module_includes: /usr/share/nginx/modules/*.conf
 nginx_proxy_includes: /etc/nginx/proxy.conf
 nginx_site_includes: /etc/nginx/conf.d/*.conf
 
+nginx_systemd_restart: false
+systemd_restart_setting: on-failure
+
 #
 # Caching
 #

@@ -46,10 +46,18 @@
     - etc/nginx/mime.types
     - etc/nginx/proxy.conf
 
+- name: Include systemd restart configuation
+  include: systemd.yml
+  when:  >-
+    ( nginx_systemd_restart|default(False)
+    or systemd_restart|default(False) )
+    and systemd_restart_setting is defined
+
 - name: (NGINX) Start and enable NGINX
-  service:
+  systemd:
     name: "{{ nginx_daemon }}"
     state: started
+    daemon_reload: yes
     enabled: true
 
 - name: (NGINX) Silently start and enable Apache

@@ -7,18 +7,19 @@ pcre_jit                    on;
 pid                         {{ nginx_pid }};
 worker_rlimit_nofile        {{ nginx_worker_rlimit_nofile }};
 {% if ansible_distribution_major_version is version('9', '>=') %}
-worker_cpu_affinity         auto;
+worker_cpu_affinity         {{ nginx_worker_processes }};
 {% endif %}
-worker_processes            auto;
+worker_processes            {{ nginx_worker_processes }};
 {% if (ansible_distribution == "Ubuntu"
     and ansible_distribution_version is version('16.04', '=='))
-    or (ansible_distribution == "Debian"
+    or
+    (ansible_distribution == "Debian"
     and ansible_distribution_major_version is version('9', '<=') ) %}
 {% else %}
 worker_shutdown_timeout     {{ nginx_worker_shutdown_timeout }};
 {% endif %}
 
-include                     /usr/share/nginx/modules/*.conf;
+include                     {{ nginx_module_includes }};
 
 events {
     worker_connections      {{ nginx_worker_connections }};

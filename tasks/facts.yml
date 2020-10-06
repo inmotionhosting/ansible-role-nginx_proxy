@@ -1,26 +1,16 @@
 ---
-- name: (NGINX) Set and sanitize facts
-  set_fact:
-    nginx_daemon: >-
-      {{ nginx_daemon
-      if nginx_daemon is defined
-      and nginx_daemon is string
-      and nginx_daemon != 0
-      else "nginx" }}
 
-- name: (RedHat) Handle errata
-  set_fact:
-    apache_daemon: httpd
-  when:
-    - ansible_os_family == "RedHat"
-    - apache_daemon is undefined
+- name: Check required NGINX variables (strings)
+  fail:
+    msg: |
+      Invalid value for variable for '{{ item }}': {{ lookup('vars', item) }}
 
-- name: (Debian) Handle Apache errata
-  set_fact:
-    apache_daemon: apache2
-  when:
-    - ansible_os_family == "Debian"
-    - apache_daemon is undefined
+      Supported types  : String
+      Supported values : Any non-null string
+  when: >-
+    lookup('vars', item) is not string
+    or lookup('vars', item) == 0
+  with_items: "{{ nginx_required_strings }}"
 
 - name: (Debian) Handle SSL errata
   set_fact:
@@ -33,7 +23,7 @@
     (ansible_distribution == "Debian"
     and ansible_distribution_version is version('9', '=='))
 
-- name: (Let's Encrypt) Add Nginx to Let's Encrypt services
+- name: Add NGINX to Let's Encrypt services
   set_fact:
     certbot_stop_services: "{{ certbot_stop_services + [nginx_daemon] }}"
   when:
@@ -42,7 +32,7 @@
     - certbot_stop_services is defined
     - nginx_daemon not in certbot_stop_services
 
-- name: (Let's Encrypt) Initialize Let's Encrypt services with Nginx
+- name: Initialize Let's Encrypt services with NGINX
   set_fact:
     certbot_stop_services:
       - "{{ nginx_daemon }}"

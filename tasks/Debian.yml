@@ -14,7 +14,7 @@
 
 - name: (Debian) Silently stop Apache if running
   service:
-    name: "apache2"
+    name: "{{ apache_daemon | default('apache2') }}"
     state: stopped
   changed_when: false
   failed_when: false

@@ -11,9 +11,6 @@ nginx_packages:
 
 nginx_config: /etc/nginx/nginx.conf
 nginx_pid: /var/run/nginx.pid
-nginx_port_http: 80
-nginx_port_https: 443
-nginx_proxy_pass: http://localhost:8080
 
 nginx_mime_includes: /etc/nginx/mime.types
 nginx_module_includes: /usr/share/nginx/modules/*.conf
@@ -56,7 +53,6 @@ nginx_gzip_min_length: 256
 
 nginx_hsts_enable: false
 nginx_http2_enable: true
-nginx_http2_idle_timeout: "5m"
 nginx_keepalive_requests: 100
 nginx_keepalive_timeout: 30
 nginx_multi_accept: true
@@ -64,12 +60,6 @@ nginx_reset_timedout_connection: true
 nginx_sendfile: true
 nginx_tcp_nodelay: true
 nginx_tcp_nopush: true
-
-#
-# http2
-#
-
-http2_idle_timeout: 5m
 
 #
 # Logging
@@ -106,8 +96,6 @@ nginx_ssl_ciphers:
   - EECDH+AESGCM
   - EDH+AESGCM
 
-nginx_ssl_dhparam: /var/nginx/dhparams.pem
-
 nginx_ssl_protocols:
   - TLSv1.2
   - TLSv1.3
@@ -119,7 +107,6 @@ nginx_ssl_session_cache: "shared:SSL:32m"
 #
 
 nginx_static_content_accel: true
-nginx_static_content_expires: "7d"
 nginx_static_content_paths: []
 
 #

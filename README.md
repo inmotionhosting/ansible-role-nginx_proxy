@@ -25,11 +25,7 @@ Available variables are listed below with their default values (you can also see
 | nginx_name | Default: `nginx`
 | nginx_user | Default: `nginx`
 | nginx_packages | Default: `[nginx]`
-| nginx_config | Default: `/etc/nginx/nginx.conf`
 | nginx_pid | Default: `/var/run/nginx.pid`
-| nginx_port_http | Default: `80`
-| nginx_port_https | Default: `443`
-| nginx_proxy_pass | Default: `http://localhost:8080`
 | nginx_mime_includes | Default: `/etc/nginx/mime.types`
 | nginx_module_includes | Default: `/usr/share/nginx/modules/*.conf`
 | nginx_proxy_includes | Default: `/etc/nginx/proxy.conf`
@@ -63,7 +59,6 @@ Available variables are listed below with their default values (you can also see
 | -------- | ----------- |
 | nginx_hsts_enable | Default: `false`
 | nginx_http2_enable | Default: `true`
-| nginx_http2_idle_timeout | Default: `5m`
 | nginx_keepalive_requests | Default: `100`
 | nginx_keepalive_timeout | Default: `30`
 | nginx_multi_accept | Default: `true`
@@ -71,11 +66,6 @@ Available variables are listed below with their default values (you can also see
 | nginx_sendfile | Default: `true`
 | nginx_tcp_nodelay | Default: `true`
 | nginx_tcp_nopush | Default: `true`
-
-### http2
-| Variable | Description |
-| -------- | ----------- |
-| http2_idle_timeout | Default: `5m`
 
 ### Logging
 | Variable | Description |
@@ -110,7 +100,6 @@ Available variables are listed below with their default values (you can also see
 | -------- | ----------- |
 | nginx_ssl_enable | Default: `true`
 | nginx_ssl_ciphers | Default: `["EECDH+AESGCM", "EDH+AESGCM"]`
-| nginx_ssl_dhparam | Default: `/var/nginx/dhparams.pem`
 | nginx_ssl_protocols | Default: `["TLSv1.2", "TLSv1.3"]`
 | nginx_ssl_session_cache | Default: `"shared:SSL:32m"`
 
@@ -118,7 +107,6 @@ Available variables are listed below with their default values (you can also see
 | Variable | Description |
 | -------- | ----------- |
 | nginx_static_content_accel | Default: `true`
-| nginx_static_content_expires | Default: `7d`
 | nginx_static_content_paths | Default: `[]`
 
 ### Workers

@@ -1,5 +1,27 @@
 ---
 
+# These lists are variables required for templating.
+- name: Set lists of required variables
+  set_fact:
+    nginx_required_strings:
+      - nginx_access_log
+      - nginx_cache_inactive
+      - nginx_cache_name
+      - nginx_error_log
+      - nginx_log_format_main
+      - nginx_mime_includes
+      - nginx_module_includes
+      - nginx_open_file_cache_inactive
+      - nginx_open_file_cache_valid
+      - nginx_pid
+      - nginx_proxy_buffer_size
+      - nginx_proxy_busy_buffers_size
+      - nginx_proxy_cache_key
+      - nginx_proxy_includes
+      - nginx_site_includes
+      - nginx_ssl_session_cache
+      - nginx_worker_processes
+
 - name: Check required NGINX variables (strings)
   fail:
     msg: |

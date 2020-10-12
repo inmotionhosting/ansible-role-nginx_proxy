@@ -1,27 +1,6 @@
 ---
 # defaults file for inmotion.nginx-proxy
 
-# These lists are variables required for templating. facts.yml will verify each
-# item on these lists is defined with a valid value
-nginx_required_strings:
-  - nginx_access_log
-  - nginx_cache_inactive
-  - nginx_cache_name
-  - nginx_error_log
-  - nginx_log_format_main
-  - nginx_mime_includes
-  - nginx_module_includes
-  - nginx_open_file_cache_inactive
-  - nginx_open_file_cache_valid
-  - nginx_pid
-  - nginx_proxy_buffer_size
-  - nginx_proxy_busy_buffers_size
-  - nginx_proxy_cache_key
-  - nginx_proxy_includes
-  - nginx_site_includes
-  - nginx_ssl_session_cache
-  - nginx_worker_processes
-
 nginx_daemon: nginx
 nginx_group: nobody
 nginx_name: nginx

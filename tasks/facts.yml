@@ -68,13 +68,17 @@
     msg: |
       Invalid value for variable 'systemd_restart_setting': '{{ systemd_restart_setting }}'
 
-      'systemd_restart_setting' must be one of the following:
-      no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, always.
+      Supported types  : String
+      Supported values : "no", "on-success", "on-failure", "on-abnormal",
+                         "on-watchdog", "on-abort", "always"
   failed_when: >-
-    (systemd_restart_setting not in
+    systemd_restart_setting not in
     ['no', 'on-success', 'on-failure', 'on-abnormal',
     'on-watchdog', 'on-abort', 'always']
     or systemd_restart_setting is not string
-    or systemd_restart_setting == 0)
-    and (nginx_systemd_restart
-    or systemd_restart)
+    or systemd_restart_setting == 0
+  when: >-
+    (nginx_systemd_restart is defined
+    and nginx_systemd_restart)
+    or (systemd_restart is defined
+    and systemd_restart)

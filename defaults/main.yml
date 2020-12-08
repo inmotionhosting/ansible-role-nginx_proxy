@@ -123,3 +123,8 @@ nginx_worker_connections: 512
 nginx_worker_processes: auto
 nginx_worker_rlimit_nofile: 1024
 nginx_worker_shutdown_timeout: 4
+
+#
+# SELinux
+#
+selinux_enabled: false

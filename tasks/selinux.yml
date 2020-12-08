@@ -1,6 +1,6 @@
 ---
 
-- name: Install SELinux management packages
+- name: (Python 3) Install SELinux management packages
   package:
     name: "{{ item }}"
     state: present
@@ -8,18 +8,28 @@
     - libselinux-python3
     - policycoreutils-python3
     - libsemanage-python3
+  when: ansible_python_version is version('3.0', '>=')
+
+- name: (Python 2) Install SELinux management packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libselinux-python
+    - policycoreutils-python
+    - libsemanage-python
+  when: ansible_python_version is version('3.0', '<')
 
 - name: Enable SELinux
   ansible.posix.selinux:
     policy: targeted
     state: enforcing
 
-- name: httpd_cache_t sitecache
+- name: Register file context for site cache
   community.general.sefcontext:
     target: "/var/nginx/cache/{{ nginx_cache_name }}(/.*)?"
     setype: httpd_cache_t
     state: present
-  when: selinux
 
 - name: Run restore context to site cache
   command: "restorecon -Rv /var/nginx/cache/{{ nginx_cache_name }}"

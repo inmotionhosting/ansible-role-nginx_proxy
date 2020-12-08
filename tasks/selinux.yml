@@ -34,9 +34,9 @@
 - name: Run restore context to site cache
   command: "restorecon -Rv /var/nginx/cache/{{ nginx_cache_name }}"
 
-- name: Set httpd_execmem
+- name: Set SELinux booleans
   ansible.posix.seboolean:
-    name: httpd_execmem
+    name: "{{ item }}"
     state: yes
     persistent: yes
   with_items:

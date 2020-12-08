@@ -12,12 +12,6 @@ Modular Ansible Role for deploying and configuring Nginx as a reverse-proxy
 
 ## Dependencies
 
-None required.
-
-### SELinux
-
-If selinux_enabled is true, the following collections are required on the Ansible host:
-
 * community.general
 * ansible.posix
 

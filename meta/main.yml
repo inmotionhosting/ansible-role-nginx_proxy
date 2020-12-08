@@ -9,6 +9,7 @@ galaxy_info:
   collections:
   - ansible.posix
   - community.general
+
   platforms:
     - name: EL
       versions:

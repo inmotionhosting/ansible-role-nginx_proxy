@@ -30,9 +30,11 @@
     target: "/var/nginx/cache/{{ nginx_cache_name }}(/.*)?"
     setype: httpd_cache_t
     state: present
+  register: filecontext_sitecache
 
 - name: Run restore context to site cache
   command: "restorecon -Rv /var/nginx/cache/{{ nginx_cache_name }}"
+  when: filecontext_sitecache.changed
 
 - name: Set SELinux booleans
   ansible.posix.seboolean:

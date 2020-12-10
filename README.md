@@ -12,7 +12,10 @@ Modular Ansible Role for deploying and configuring Nginx as a reverse-proxy
 
 ## Dependencies
 
-None.
+* community.general
+* ansible.posix
+
+Install with `ansible-galaxy collection install community.general ansible.posix`
 
 ## Role Variables
 
@@ -116,6 +119,11 @@ Available variables are listed below with their default values (you can also see
 | nginx_worker_processes | Default: `auto`
 | nginx_worker_rlimit_nofile | Default: `8192`
 | nginx_worker_shutdown_timeout | Default: `4`
+
+### SELinux
+| Variable | Description |
+| -------- | ----------- |
+| selinux_enabled | Default: `false`
 
 ## Example Playbook
 

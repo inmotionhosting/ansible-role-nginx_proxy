@@ -19,6 +19,7 @@ env:
 
 install:
   - pip install -r requirements.txt
+  - ansible-galaxy collection install community.general ansible.posix
 
 script:
   - molecule test

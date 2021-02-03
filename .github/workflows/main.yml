@@ -7,8 +7,12 @@ on:
     branches: [ master ]
 
 jobs: 
-  setup:
+  test:
     runs-on: self-hosted
+    strategy:
+      fail-fast: false
+      matrix:
+        molecule_distro: [ centos-7, centos-8, debian-9, debian-10, ubuntu-18.04, ubuntu-20.04 ]
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python3
@@ -19,13 +23,6 @@ jobs:
         run: pip install -r requirements.txt
       - name: Ansible Galaxy install Community collection
         run: ansible-galaxy collection install community.general
-  test:
-    runs-on: self-hosted
-    strategy:
-      fail-fast: false
-      matrix:
-        molecule_distro: [ centos-7, centos-8, debian-9, debian-10, ubuntu-18.04, ubuntu-20.04 ]
-    steps:
       - name: Molecule Test
         run: molecule test
         env:

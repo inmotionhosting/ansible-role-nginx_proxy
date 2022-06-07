@@ -30,11 +30,14 @@ systemd_restart_setting: on-failure
 # Caching
 #
 
-nginx_cache_enable: true
+nginx_cache_convert_head: true
+nginx_cache_honor_cc: false
+nginx_cache_honor_cookies: true
+nginx_cache_honor_expires: false
 nginx_cache_inactive: 1h
 nginx_cache_name: "sitecache"
-nginx_cache_time_default: 5
 nginx_cache_time_404: 10
+nginx_cache_time_default: 5
 
 nginx_etag: true
 nginx_ssi: false

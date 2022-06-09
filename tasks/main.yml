@@ -29,6 +29,11 @@
     state: touch
   changed_when: false
 
+- name: Include NGINX Cache Profile vars
+  include_vars:
+    file: ../inmotionhosting.wordpress_ultrastack/vars/nginx_cache_profiles/{{ nginx_cache_profile }}.yml
+  tags: profile
+
 - name: Configure NGINX
   template:
     src: "{{ item }}.j2"
@@ -40,6 +45,7 @@
     - etc/nginx/nginx.conf
     - etc/nginx/mime.types
     - etc/nginx/proxy.conf
+  tags: profile
 
 - name: Include systemd restart configuation
   include: systemd.yml

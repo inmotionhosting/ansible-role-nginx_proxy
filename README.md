@@ -37,18 +37,21 @@ Available variables are listed below with their default values (you can also see
 ### Caching
 | Variable | Description |
 | -------- | ----------- |
-| nginx_cache_enable | Default: `true`
+| nginx_cache_convert_head: Default: `true`
+| nginx_cache_honor_cc: Default: `false`
+| nginx_cache_honor_cookies: Default: `true`
+| nginx_cache_honor_expires: Default: `false`
 | nginx_cache_inactive | Default: `1h`
 | nginx_cache_name | Default: `sitecache`
-| nginx_cache_time_default | Default: `5`
 | nginx_cache_time_404 | Default: `10`
+| nginx_cache_time_default | Default: `5`
 | nginx_etag | Default: `true`
-| nginx_ssi | Default: `false`
 | nginx_open_file_cache_errors | Default: `false`
 | nginx_open_file_cache_inactive | Default: `8m`
 | nginx_open_file_cache_max | Default: `16536`
 | nginx_open_file_cache_min_uses | Default: `1`
 | nginx_open_file_cache_valid | Default: `5m`
+| nginx_ssi | Default: `false`
 
 ### Compression
 | Variable | Description |

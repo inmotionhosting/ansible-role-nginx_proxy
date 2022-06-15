@@ -23,11 +23,24 @@
     state: directory
   with_items: "{{ nginx_config_dirs }}"
 
+- name: Set ownership for NGINX cache directories
+  file:
+    name: /var/nginx/cache
+    owner: nginx
+    group: nginx
+    state: directory
+    recurse: yes
+
 - name: Create pidfile
   file:
     name: "{{ nginx_pid }}"
     state: touch
   changed_when: false
+
+- name: Include NGINX Cache Profile vars
+  include_vars:
+    file: ../inmotionhosting.wordpress_ultrastack/vars/nginx_cache_profiles/{{ nginx_cache_profile }}.yml
+  tags: profile
 
 - name: Configure NGINX
   template:
@@ -40,6 +53,7 @@
     - etc/nginx/nginx.conf
     - etc/nginx/mime.types
     - etc/nginx/proxy.conf
+  tags: profile
 
 - name: Include systemd restart configuation
   include: systemd.yml

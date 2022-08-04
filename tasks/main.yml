@@ -29,7 +29,21 @@
     owner: nginx
     group: nginx
     state: directory
+    mode: '0755'
     recurse: yes
+
+- name: Creates a cron to fix nginx cache permissions
+  ansible.builtin.cron:
+    name: nginx cache permissions
+    weekday: "*"
+    minute: "*"
+    hour: "*"
+    user: root
+    job: >-
+      find /var/nginx/cache/ -type d -exec chmod -v 770 {} \; &>/dev/null ;
+      find /var/nginx/cache/ -type f -exec chmod -v 660 {} \; &>/dev/null
+    cron_file: cachefix
+
 
 - name: Create pidfile
   file:

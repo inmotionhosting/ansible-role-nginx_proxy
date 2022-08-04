@@ -18,6 +18,7 @@ proxy_cache_use_stale       updating error timeout http_502 http_503 http_504;
 proxy_cache_valid 200       {{ nginx_cache_time_default }}s;
 proxy_cache_valid 404       {{ nginx_cache_time_404 }}s;
 proxy_cache_valid 500       0;
+proxy_store_access          user:rw group:rw all:r;
 
 {% if not (nginx_cache_honor_cc and nginx_cache_honor_expires and nginx_cache_honor_cookies) %}
 proxy_ignore_headers        {{ "" if nginx_cache_honor_cc else "Cache-Control" }} {{ "" if nginx_cache_honor_expires else "Expires" }} {{ "" if nginx_cache_honor_cookies else "Set-Cookie" }};

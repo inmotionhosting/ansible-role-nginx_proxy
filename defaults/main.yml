@@ -42,11 +42,11 @@ nginx_cache_time_default: 5
 nginx_etag: true
 nginx_ssi: false
 
-nginx_open_file_cache_errors: false
-nginx_open_file_cache_inactive: 8m
+nginx_open_file_cache_errors: true
+nginx_open_file_cache_inactive: 2s
 nginx_open_file_cache_max: 16536
-nginx_open_file_cache_min_uses: 1
-nginx_open_file_cache_valid: "5m"
+nginx_open_file_cache_min_uses: 2
+nginx_open_file_cache_valid: "3s"
 
 #
 # Compression

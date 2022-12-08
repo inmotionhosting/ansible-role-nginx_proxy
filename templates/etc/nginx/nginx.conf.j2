@@ -23,7 +23,7 @@ include                     {{ nginx_module_includes }};
 
 events {
     worker_connections      {{ nginx_worker_connections }};
-    multi_accept            {{ "on" if nginx_multi_accept else "off" }};
+    multi_accept            {{ "on" if nginx_multi_accept | bool else "off" }};
 }
 
 http {
@@ -42,28 +42,31 @@ http {
     disable_symlinks        if_not_owner;
     keepalive_requests      {{ nginx_keepalive_requests }};
     keepalive_timeout       {{ nginx_keepalive_timeout }};
-    reset_timedout_connection {{ "on" if nginx_reset_timedout_connection else "off" }};
-    sendfile                {{ "on" if nginx_sendfile else "off" }};
+    reset_timedout_connection {{ "on" if nginx_reset_timedout_connection | bool else "off" }};
+    sendfile                {{ "on" if nginx_sendfile | bool else "off" }};
     server_names_hash_bucket_size 128;
-    tcp_nodelay             {{ "on" if nginx_tcp_nodelay else "off" }};
-    tcp_nopush              {{ "on" if nginx_tcp_nopush else "off" }};
+    tcp_nodelay             {{ "on" if nginx_tcp_nodelay | bool else "off" }};
+    tcp_nopush              {{ "on" if nginx_tcp_nopush | bool else "off" }};
+    http2_push_preload      {{ "on" if nginx_http2_push_preload | bool else "off" }};
 
     # Client
-    client_max_body_size    10m;
-    client_body_buffer_size 128k;
+    client_body_buffer_size {{ nginx_client_body_buffer_size }};
+    client_header_buffer_size {{ nginx_client_header_buffer_size }};
+    client_max_body_size    {{ nginx_client_max_body_size }};
 
+    
     # Caching
-    etag                    {{ "on" if nginx_etag else "off" }};
-    ssi                     {{ "on" if nginx_ssi else "off" }};
+    etag                    {{ "on" if nginx_etag | bool else "off" }};
+    ssi                     {{ "on" if nginx_ssi | bool else "off" }};
 
     open_file_cache         max={{ nginx_open_file_cache_max }}
                             inactive={{ nginx_open_file_cache_inactive }};
     open_file_cache_valid   {{ nginx_open_file_cache_valid }};
     open_file_cache_min_uses {{ nginx_open_file_cache_min_uses }};
-    open_file_cache_errors  {{ "on" if nginx_open_file_cache_errors else "off" }};
+    open_file_cache_errors  {{ "on" if nginx_open_file_cache_errors | bool else "off" }};
 
     # Compression
-    gzip                    {{ "on" if nginx_gzip_enabled else "off" }};
+    gzip                    {{ "on" if nginx_gzip_enabled | bool else "off" }};
     gzip_buffers            16 8k;
     gzip_comp_level         {{ nginx_gzip_comp_level }};
     gzip_min_length         {{ nginx_gzip_min_length }};

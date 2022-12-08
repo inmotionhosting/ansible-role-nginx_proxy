@@ -34,6 +34,13 @@ Available variables are listed below with their default values (you can also see
 | nginx_proxy_includes | Default: `/etc/nginx/proxy.conf`
 | nginx_site_includes | Default: `/etc/nginx/conf.d/*.conf`
 
+### Core
+| Variable | Description |
+| -------- | ----------- |
+| nginx_client_body_buffer_size | Default `1m`
+| nginx_client_header_buffer_size | Default `2k`
+| nginx_client_max_body_size | Default `512m`
+
 ### Caching
 | Variable | Description |
 | -------- | ----------- |
@@ -65,12 +72,13 @@ Available variables are listed below with their default values (you can also see
 | -------- | ----------- |
 | nginx_hsts_enable | Default: `false`
 | nginx_http2_enable | Default: `true`
+| nginx_http2_push_preload | Default: `true`
 | nginx_keepalive_requests | Default: `100`
 | nginx_keepalive_timeout | Default: `30`
 | nginx_multi_accept | Default: `true`
 | nginx_reset_timedout_connection | Default: `true`
 | nginx_sendfile | Default: `true`
-| nginx_tcp_nodelay | Default: `true`
+| nginx_tcp_nodelay | Default: `false`
 | nginx_tcp_nopush | Default: `true`
 
 ### Logging
@@ -88,6 +96,7 @@ Available variables are listed below with their default values (you can also see
 | nginx_proxy_busy_buffers_size | Default: `64k`
 | nginx_proxy_cache_key | Default: `"$scheme$request_method$host$request_uri"`
 | nginx_proxy_connect_timeout | Default: `90`
+| nginx_proxy_hide_header | Default: `Upgrade`
 | nginx_proxy_read_timeout | Default: `90`
 | nginx_proxy_redirect | Default: `false`
 | nginx_proxy_send_timeout | Default: `90`
@@ -105,7 +114,7 @@ Available variables are listed below with their default values (you can also see
 | Variable | Description |
 | -------- | ----------- |
 | nginx_ssl_enable | Default: `true`
-| nginx_ssl_ciphers | Default: `["EECDH+AESGCM", "EDH+AESGCM"]`
+| nginx_ssl_ciphers | Default: `["EECDH+AESGCM", "EDH+AESGCM", "AES256+EECDH", "AES256+EDH", "ECDHE-RSA-AES128-GCM-SHA256", "ECDHE-ECDSA-AES128-GCM-SHA256"]`
 | nginx_ssl_protocols | Default: `["TLSv1.2", "TLSv1.3"]`
 | nginx_ssl_session_cache | Default: `"shared:SSL:32m"`
 

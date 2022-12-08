@@ -27,6 +27,14 @@ nginx_systemd_restart: false
 systemd_restart_setting: on-failure
 
 #
+# Core
+#
+
+nginx_client_body_buffer_size: 1m
+nginx_client_header_buffer_size: 2k
+nginx_client_max_body_size: 512m
+
+#
 # Caching
 #
 
@@ -42,7 +50,7 @@ nginx_cache_time_default: 5
 nginx_etag: true
 nginx_ssi: false
 
-nginx_open_file_cache_errors: true
+nginx_open_file_cache_errors: false
 nginx_open_file_cache_inactive: 2s
 nginx_open_file_cache_max: 16536
 nginx_open_file_cache_min_uses: 2
@@ -62,12 +70,13 @@ nginx_gzip_min_length: 256
 
 nginx_hsts_enable: false
 nginx_http2_enable: true
+nginx_http2_push_preload: false
 nginx_keepalive_requests: 100
 nginx_keepalive_timeout: 30
 nginx_multi_accept: true
 nginx_reset_timedout_connection: true
 nginx_sendfile: true
-nginx_tcp_nodelay: true
+nginx_tcp_nodelay: false
 nginx_tcp_nopush: true
 
 #
@@ -104,6 +113,10 @@ nginx_ssl_enable: true
 nginx_ssl_ciphers:
   - EECDH+AESGCM
   - EDH+AESGCM
+  - AES256+EECDH
+  - AES256+EDH
+  - ECDHE-RSA-AES128-GCM-SHA256
+  - ECDHE-ECDSA-AES128-GCM-SHA256
 
 nginx_ssl_protocols:
   - TLSv1.2

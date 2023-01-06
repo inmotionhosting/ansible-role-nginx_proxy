@@ -106,7 +106,7 @@ http {
 
 {% endif %}
     # SSL
-    ssl_ciphers             "{{ nginx_ssl_ciphers|join(' ') }}";
+    ssl_ciphers             {{ nginx_ssl_ciphers|join(':') }};
     ssl_ecdh_curve          secp384r1;
 {% if dh_path is defined and dh_path | length > 0 %}
     ssl_dhparam             {{ dh_path }};

@@ -34,7 +34,9 @@ proxy_set_header            X-Real-IP           $remote_addr;
 proxy_set_header            X-Forwarded-For     $proxy_add_x_forwarded_for;
 proxy_set_header            X-Forwarded-Proto   $scheme;
 
-proxy_hide_header           Upgrade;
+{% for header in nginx_proxy_hide_header -%}
+proxy_hide_header           {{ header }};
+{% endfor %}
 
 proxy_ssl_name              $host;
 proxy_ssl_verify            off;

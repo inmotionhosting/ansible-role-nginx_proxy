@@ -34,6 +34,10 @@ proxy_set_header            X-Real-IP           $remote_addr;
 proxy_set_header            X-Forwarded-For     $proxy_add_x_forwarded_for;
 proxy_set_header            X-Forwarded-Proto   $scheme;
 
+{% if nginx_proxy_hide_header is string %}
+{% set nginx_proxy_hide_header = nginx_proxy_hide_header.split(' ') %}
+{% endif %}
+
 {% for header in nginx_proxy_hide_header -%}
 proxy_hide_header           {{ header }};
 {% endfor %}

@@ -77,14 +77,6 @@
     or systemd_restart|default(False) )
     and systemd_restart_setting is defined
 
-# SELinux only
-- name: Enable and configure SELinux
-  include: selinux.yml
-  when:
-    - selinux_enabled is defined
-    - selinux_enabled
-    - ansible_os_family == "RedHat"
-
 - name: Start and enable NGINX
   systemd:
     name: "{{ nginx_daemon }}"

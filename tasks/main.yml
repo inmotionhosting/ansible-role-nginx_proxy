@@ -83,6 +83,7 @@
     state: started
     daemon_reload: yes
     enabled: true
+  ignore_errors: true
 
 - name: Silently start and enable Apache
   service:

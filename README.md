@@ -1,4 +1,4 @@
-[Ansible Molecule Pipeline](https://github.com/inmotionhosting/ansible-role-nginx_proxy/actions/workflows/main.yml/badge.svg) [![GPL-3.0 License](https://img.shields.io/github/license/inmotionhosting/ansible-role-nginx_proxy.svg?color=blue)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/inmotionhosting/ansible-role-nginx_proxy.svg)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/stargazers)
+![Ansible Molecule Pipeline](https://github.com/inmotionhosting/ansible-role-nginx_proxy/actions/workflows/main.yml/badge.svg) [![GPL-3.0 License](https://img.shields.io/github/license/inmotionhosting/ansible-role-nginx_proxy.svg?color=blue)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/inmotionhosting/ansible-role-nginx_proxy.svg)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/stargazers)
 
 # Ansible Role: Nginx Proxy
 

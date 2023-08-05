@@ -26,15 +26,6 @@
     mode: '0750'
   with_items: "{{ nginx_config_dirs }}"
 
-- name: Set ownership for NGINX cache directories
-  ansible.builtin.file:
-    name: /var/nginx/cache
-    owner: nginx
-    group: nginx
-    state: directory
-    mode: '0755'
-    recurse: yes
-
 - name: Install package containing crontab
   ansible.builtin.package:
     name: "{{ crontab_package }}"

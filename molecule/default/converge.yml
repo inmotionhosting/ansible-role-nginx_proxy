@@ -8,12 +8,6 @@
         update_cache: true
         cache_valid_time: 3600
       when: ansible_os_family == 'Debian'
-    
-    - name: Install iproute (AlmaLinux)
-      ansible.builtin.package:
-        state: present
-        name: iproute
-      when: ansible_distribution == 'AlmaLinux'
 
   roles:
     - role: ansible-role-nginx_proxy

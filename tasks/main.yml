@@ -65,9 +65,13 @@
     msg: >-
      {{ ansible_hostname }} 
      {{ 
-        ansible_ip_addresses 
-          if ansible_os_family == "Windows" 
-          else ansible_default_ipv4.address 
+        ansible_ip_addresses | default ('n/a')
+     }}
+     {{          
+        ansible_default_ipv4.address | default('n/a')
+     }}
+     {{          
+        ansible_all_ipv4_addresses | default('n/a')
      }}
      {# 
         Mind that you still have to implement your own logic 

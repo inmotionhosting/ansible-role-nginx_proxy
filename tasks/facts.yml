@@ -2,7 +2,7 @@
 
 # These lists are variables required for templating.
 - name: Set lists of required variables
-  set_fact:
+  ansible.builtin.set_fact:
     nginx_required_strings:
       - nginx_access_log
       - nginx_cache_inactive
@@ -23,7 +23,7 @@
       - nginx_worker_processes
 
 - name: Check required NGINX variables (strings)
-  fail:
+  ansible.builtin.fail:
     msg: |
       Invalid value for variable for '{{ item }}': {{ lookup('vars', item) }}
 
@@ -35,7 +35,7 @@
   with_items: "{{ nginx_required_strings }}"
 
 - name: (Debian) Handle SSL errata
-  set_fact:
+  ansible.builtin.set_fact:
     nginx_ssl_protocols:
       - TLSv1.2
   when: >-
@@ -46,7 +46,7 @@
     and ansible_distribution_version is version('9', '=='))
 
 - name: Add NGINX to Let's Encrypt services
-  set_fact:
+  ansible.builtin.set_fact:
     certbot_stop_services: "{{ certbot_stop_services + [nginx_daemon] }}"
   when:
     - use_letsencrypt is defined
@@ -55,7 +55,7 @@
     - nginx_daemon not in certbot_stop_services
 
 - name: Initialize Let's Encrypt services with NGINX
-  set_fact:
+  ansible.builtin.set_fact:
     certbot_stop_services:
       - "{{ nginx_daemon }}"
   when:
@@ -64,7 +64,7 @@
     - certbot_stop_services is not defined
 
 - name: Check variable 'systemd_restart_setting'
-  fail:
+  ansible.builtin.fail:
     msg: |
       Invalid value for variable 'systemd_restart_setting': '{{ systemd_restart_setting }}'
 

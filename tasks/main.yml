@@ -2,10 +2,10 @@
 # tasks file for inmotion.nginx-proxy
 
 - name: Include variables and set facts
-  include: facts.yml
+  ansible.builtin.include_tasks: facts.yml
 
 - name: Include os_family tasks
-  include: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
   vars:
     targets:
       - Debian
@@ -13,18 +13,21 @@
   when: ansible_os_family in targets
 
 - name: Install NGINX packages
-  package:
+  ansible.builtin.package:
     name: "{{ nginx_packages }}"
     state: present
 
 - name: Create NGINX configuration directories
-  file:
+  ansible.builtin.file:
     name: "{{ item }}"
     state: directory
+    owner: root
+    group: root
+    mode: '0750'
   with_items: "{{ nginx_config_dirs }}"
 
 - name: Set ownership for NGINX cache directories
-  file:
+  ansible.builtin.file:
     name: /var/nginx/cache
     owner: nginx
     group: nginx
@@ -46,18 +49,21 @@
 
 
 - name: Create pidfile
-  file:
+  ansible.builtin.file:
     name: "{{ nginx_pid }}"
     state: touch
+    owner: root
+    group: root
+    mode: '0644'    
   changed_when: false
 
 - name: Include NGINX Cache Profile vars
-  include_vars:
+  ansible.builtin.include_vars:
     file: ../inmotionhosting.wordpress_ultrastack/vars/nginx_cache_profiles/{{ nginx_cache_profile }}.yml
   tags: profile
 
 - name: Configure NGINX
-  template:
+  ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "/{{ item }}"
     owner: root
@@ -71,22 +77,22 @@
   tags: profile
 
 - name: Include systemd restart configuation
-  include: systemd.yml
+  ansible.builtin.include_tasks: systemd.yml
   when: >-
     ( nginx_systemd_restart|default(False)
     or systemd_restart|default(False) )
     and systemd_restart_setting is defined
 
 - name: Start and enable NGINX
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ nginx_daemon }}"
     state: started
     daemon_reload: yes
     enabled: true
-  ignore_errors: true
+  failed_when: false
 
 - name: Silently start and enable Apache
-  service:
+  ansible.builtin.service:
     name: "{{ apache_daemon | default('httpd') }}"
     state: started
     enabled: true

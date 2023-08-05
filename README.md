@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/inmotionhosting/ansible-role-nginx_proxy.png?branch=master)](https://travis-ci.org/inmotionhosting/ansible-role-nginx_proxy) [![GPL-3.0 License](https://img.shields.io/github/license/inmotionhosting/ansible-role-nginx_proxy.svg?color=blue)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/inmotionhosting/ansible-role-nginx_proxy.svg)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/stargazers)
+[![Ansible Molecule Pipeline](https://github.com/inmotionhosting/ansible-role-nginx_proxy/workflows/main.yml/badge.svg?branch=master&event=push)] [![GPL-3.0 License](https://img.shields.io/github/license/inmotionhosting/ansible-role-nginx_proxy.svg?color=blue)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/inmotionhosting/ansible-role-nginx_proxy.svg)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/stargazers)
 
 # Ansible Role: Nginx Proxy
 
@@ -7,15 +7,10 @@ Modular Ansible Role for deploying and configuring Nginx as a reverse-proxy
 ## Requirements
 
 * CentOS 7.x or later
-* Debian 9 or later
-* Ubuntu 16.04 LTS or later
-
-## Dependencies
-
-* community.general
-* ansible.posix
-
-Install with `ansible-galaxy collection install community.general ansible.posix`
+* Debian 10 or later
+* Ubuntu 18.04 LTS or later
+* AlmaLinux 8.x or later
+* RockyLinux 8.x or later
 
 ## Role Variables
 

@@ -35,6 +35,11 @@
     mode: '0755'
     recurse: yes
 
+- name: Install package containing crontab
+  ansible.builtin.package:
+    name: "{{ crontab_package }}"
+    state: present
+
 - name: Creates a cron to fix nginx cache permissions
   ansible.builtin.cron:
     name: nginx cache permissions

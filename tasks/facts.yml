@@ -1,4 +1,7 @@
 ---
+- name: Include Debian vars
+  ansible.builtin.include_vars: "debian.yml"
+  when: ansible_os_family|lower == "debian"
 
 # These lists are variables required for templating.
 - name: Set lists of required variables

@@ -1,6 +1,6 @@
 ---
 - name: (RedHat) Install epel-release
-  package:
+  ansible.builtin.package:
     name: "epel-release"
     state: present
   changed_when: false

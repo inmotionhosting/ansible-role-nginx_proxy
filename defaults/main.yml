@@ -14,7 +14,6 @@ nginx_config_dirs:
   - /etc/nginx/conf.d
   - /etc/nginx/logs
   - /var/nginx/cache
-  - /var/nginx/cache/{{ nginx_cache_name }}
 
 nginx_pid: /var/run/nginx.pid
 
@@ -141,3 +140,8 @@ nginx_worker_connections: 512
 nginx_worker_processes: auto
 nginx_worker_rlimit_nofile: 1024
 nginx_worker_shutdown_timeout: 4
+
+#
+# Extra Packages
+#
+crontab_package: cronie

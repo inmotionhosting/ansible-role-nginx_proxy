@@ -1,7 +1,7 @@
 # {{ template_destpath }}
 # {{ ansible_managed }}
 
-proxy_bind                  {{ ansible_default_ipv4.address }};
+proxy_bind                  {{ ansible_default_ipv4.address | default('off') }};
 proxy_buffers               {{ nginx_proxy_buffers|join(' ') }};
 proxy_buffer_size           {{ nginx_proxy_buffer_size }};
 proxy_busy_buffers_size     {{ nginx_proxy_busy_buffers_size }};

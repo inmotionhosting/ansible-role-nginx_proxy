@@ -1,11 +1,11 @@
 ---
 - name: (Debian) Create nginx group
-  group:
+  ansible.builtin.group:
     name: "{{ nginx_group }}"
     state: present
 
 - name: (Debian) Create nginx user
-  user:
+  ansible.builtin.user:
     name: "{{ nginx_user }}"
     state: present
     create_home: false
@@ -13,7 +13,7 @@
       - nobody
 
 - name: (Debian) Silently stop Apache if running
-  service:
+  ansible.builtin.service:
     name: "{{ apache_daemon | default('apache2') }}"
     state: stopped
   changed_when: false

@@ -59,6 +59,23 @@
   tags: profile
   when: nginx_cache_profile is defined
 
+
+- name: Debug ipv4 addresses on almalinux docker container
+  ansible.builtin.debug:
+    msg: >-
+     {{ ansible_hostname }} 
+     {{ 
+        ansible_ip_addresses 
+          if ansible_os_family == "Windows" 
+          else ansible_default_ipv4.address 
+     }}
+     {# 
+        Mind that you still have to implement your own logic 
+        of what is the "default" IP if you have more 
+        than one IP address on that Windows machine, as linked above
+     #}
+     {{ ansible_distribution }}
+
 - name: Configure NGINX
   ansible.builtin.template:
     src: "{{ item }}.j2"

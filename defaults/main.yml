@@ -143,11 +143,6 @@ nginx_worker_rlimit_nofile: 1024
 nginx_worker_shutdown_timeout: 4
 
 #
-# InMotion Hosting Caching Profile Preset
-#
-nginx_cache_profile: no_caching
-
-#
 # Extra Packages
 #
 crontab_package: cronie

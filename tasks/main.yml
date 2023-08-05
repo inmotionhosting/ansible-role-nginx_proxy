@@ -79,7 +79,7 @@
     - etc/nginx/nginx.conf
     - etc/nginx/mime.types
     - etc/nginx/proxy.conf
-  notify: restart nginx    
+  notify: Restart nginx    
   tags: profile
 
 - name: Include systemd restart configuation

@@ -24,8 +24,6 @@ provisioner:
       nocows: 1
       stdout_callback: "yaml"
       var_compression_level: 9
-    options:
-      D: True
 
 verifier:
   name: ansible

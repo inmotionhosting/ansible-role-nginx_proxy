@@ -13,7 +13,8 @@ env:
   ANSIBLE_FORCE_COLOR: '1'
 
 jobs:
-  test:
+  molecule:
+    name: Molecule Test
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -45,7 +46,8 @@ jobs:
           MOLECULE_IMAGE: ${{ matrix.image }}
           MOLECULE_COMMAND: ${{ matrix.command }}
 
-  test-legacy:
+  molecule-legacy:
+    name: Molecule Test Legacy OS
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false

@@ -26,6 +26,22 @@
     mode: '0750'
   with_items: "{{ nginx_config_dirs }}"
 
+- name: Create NGINX cache directory
+  ansible.builtin.file:
+    name: "{{ nginx_cache_dir }}"
+    state: directory
+    owner: nginx
+    group: nginx
+    mode: '0770'
+
+- name: Create NGINX site cache directory
+  ansible.builtin.file:
+    name: "{{ nginx_cache_dir }}/{{ nginx_cache_name }}"
+    state: directory
+    owner: nginx
+    group: nginx
+    mode: '0770'
+
 - name: Install package containing crontab
   ansible.builtin.package:
     name: "{{ crontab_package }}"
@@ -42,7 +58,6 @@
       find /var/nginx/cache/ -type d -exec chmod -v 770 {} \; &>/dev/null ;
       find /var/nginx/cache/ -type f -exec chmod -v 660 {} \; &>/dev/null
     cron_file: cachefix
-
 
 - name: Create pidfile
   ansible.builtin.file:
@@ -79,6 +94,14 @@
     ( nginx_systemd_restart|default(False)
     or systemd_restart|default(False) )
     and systemd_restart_setting is defined
+
+# SELinux only
+- name: Enable and configure SELinux
+  ansible.builtin.include_tasks: selinux.yml
+  when:
+    - selinux_enabled is defined
+    - selinux_enabled
+    - ansible_os_family == "RedHat"
 
 - name: Start and enable NGINX
   ansible.builtin.systemd:

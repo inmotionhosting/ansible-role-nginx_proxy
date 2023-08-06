@@ -13,6 +13,8 @@ nginx_config_dirs:
   - /etc/nginx
   - /etc/nginx/conf.d
   - /etc/nginx/logs
+
+nginx_cache_dir:
   - /var/nginx/cache
 
 nginx_pid: /var/run/nginx.pid
@@ -140,6 +142,17 @@ nginx_worker_connections: 512
 nginx_worker_processes: auto
 nginx_worker_rlimit_nofile: 1024
 nginx_worker_shutdown_timeout: 4
+
+#
+# SELinux
+#
+selinux_enabled: false
+selinux_booleans:
+  - httpd_setrlimit
+  - httpd_execmem
+  - httpd_can_network_connect
+  - httpd_can_network_connect_db
+  - httpd_read_user_content
 
 #
 # Extra Packages

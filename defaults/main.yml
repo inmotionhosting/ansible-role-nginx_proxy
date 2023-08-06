@@ -14,8 +14,7 @@ nginx_config_dirs:
   - /etc/nginx/conf.d
   - /etc/nginx/logs
 
-nginx_cache_dir:
-  - /var/nginx/cache
+nginx_cache_dir: /var/nginx/cache
 
 nginx_pid: /var/run/nginx.pid
 

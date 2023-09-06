@@ -11,7 +11,7 @@ proxy_cache_convert_head    {{ "on" if nginx_cache_convert_head | bool else "off
 proxy_cache_key             {{ nginx_proxy_cache_key }};
 proxy_cache_lock            on;
 proxy_cache_path            /var/nginx/cache/{{ nginx_cache_name }}
-                            levels=1
+                            levels=2
                             keys_zone={{ nginx_cache_name }}:128m
                             inactive={{ nginx_cache_inactive }};
 proxy_cache_use_stale       updating error timeout http_502 http_503 http_504;

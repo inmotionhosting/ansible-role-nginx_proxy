@@ -23,7 +23,7 @@
     state: directory
     owner: root
     group: root
-    mode: '0750'
+    mode: "0750"
   with_items: "{{ nginx_config_dirs }}"
 
 - name: Create NGINX cache directory
@@ -32,7 +32,7 @@
     state: directory
     owner: nginx
     group: nginx
-    mode: '0770'
+    mode: "0770"
 
 - name: Create NGINX site cache directory
   ansible.builtin.file:
@@ -40,7 +40,7 @@
     state: directory
     owner: nginx
     group: nginx
-    mode: '0770'
+    mode: "0770"
 
 - name: Install package containing crontab
   ansible.builtin.package:
@@ -65,7 +65,7 @@
     state: touch
     owner: root
     group: root
-    mode: '0644'    
+    mode: "0644"
   changed_when: false
 
 - name: Include NGINX Cache Profile vars
@@ -80,12 +80,12 @@
     dest: "/{{ item }}"
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
   with_items:
     - etc/nginx/nginx.conf
     - etc/nginx/mime.types
     - etc/nginx/proxy.conf
-  notify: Restart nginx    
+  notify: Restart nginx
   tags: profile
 
 - name: Include systemd restart configuation
@@ -107,7 +107,7 @@
   ansible.builtin.systemd:
     name: "{{ nginx_daemon }}"
     state: started
-    daemon_reload: yes
+    daemon_reload: true
     enabled: true
   failed_when: false
 

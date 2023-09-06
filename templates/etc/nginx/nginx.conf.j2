@@ -38,6 +38,9 @@ http {
     include                 {{ nginx_mime_includes }};
     default_type            application/octet-stream;
 
+    # Trusted Proxies
+    include                 {{ nginx_trusted_proxies_includes }};
+
     # Connection
     disable_symlinks        if_not_owner;
     keepalive_requests      {{ nginx_keepalive_requests }};

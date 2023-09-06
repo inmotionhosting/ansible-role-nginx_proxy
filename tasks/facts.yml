@@ -23,6 +23,7 @@
       - nginx_proxy_includes
       - nginx_site_includes
       - nginx_ssl_session_cache
+      - nginx_trusted_proxies_includes
       - nginx_worker_processes
 
 - name: Check required NGINX variables (strings)

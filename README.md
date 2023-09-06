@@ -37,6 +37,7 @@ Available variables are listed below with their default values (you can also see
 | nginx_module_includes | Default: `/usr/share/nginx/modules/*.conf`
 | nginx_proxy_includes | Default: `/etc/nginx/proxy.conf`
 | nginx_site_includes | Default: `/etc/nginx/conf.d/*.conf`
+| nginx_trusted_proxies_includes | Default: `/etc/nginx/trusted_proxies.conf`
 
 ### Core
 | Variable | Description |

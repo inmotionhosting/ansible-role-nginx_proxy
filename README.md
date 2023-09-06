@@ -49,10 +49,10 @@ Available variables are listed below with their default values (you can also see
 ### Caching
 | Variable | Description |
 | -------- | ----------- |
-| nginx_cache_convert_head: Default: `true`
-| nginx_cache_honor_cc: Default: `false`
-| nginx_cache_honor_cookies: Default: `true`
-| nginx_cache_honor_expires: Default: `false`
+| nginx_cache_convert_head: | Default: `true`
+| nginx_cache_honor_cc: | Default: `false`
+| nginx_cache_honor_cookies: | Default: `true`
+| nginx_cache_honor_expires: | Default: `false`
 | nginx_cache_inactive | Default: `1h`
 | nginx_cache_name | Default: `sitecache`
 | nginx_cache_time_404 | Default: `10`
@@ -89,8 +89,8 @@ Available variables are listed below with their default values (you can also see
 ### Logging
 | Variable | Description |
 | -------- | ----------- |
-| nginx_access_log | Default: `/var/log/nginx/access.l`
-| nginx_error_log | Default: `/var/log/nginx/error.l`
+| nginx_access_log | Default: `/var/log/nginx/access.log`
+| nginx_error_log | Default: `/var/log/nginx/error.log`
 | nginx_log_format_main | Default: `$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"`
 
 ### Proxy

@@ -85,6 +85,7 @@
     - etc/nginx/nginx.conf
     - etc/nginx/mime.types
     - etc/nginx/proxy.conf
+    - etc/nginx/trusted_proxies.conf
   notify: Restart nginx
   tags: profile
 

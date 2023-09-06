@@ -21,6 +21,7 @@ nginx_pid: /var/run/nginx.pid
 nginx_mime_includes: /etc/nginx/mime.types
 nginx_module_includes: /usr/share/nginx/modules/*.conf
 nginx_proxy_includes: /etc/nginx/proxy.conf
+nginx_trusted_proxies_includes: /etc/nginx/trusted_proxies.conf
 nginx_site_includes: /etc/nginx/conf.d/*.conf
 
 nginx_systemd_restart: false

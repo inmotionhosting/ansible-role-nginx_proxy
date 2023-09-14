@@ -70,7 +70,7 @@
 
 - name: Include NGINX Cache Profile vars
   ansible.builtin.include_vars:
-    file: ../inmotionhosting.wordpress_ultrastack/vars/nginx_cache_profiles/{{ nginx_cache_profile }}.yml
+    file: ../inmotionhosting.wordpress/vars/nginx_cache_profiles/{{ nginx_cache_profile }}.yml
   tags: profile
   when: nginx_cache_profile is defined
 

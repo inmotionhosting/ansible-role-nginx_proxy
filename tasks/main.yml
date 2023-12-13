@@ -89,10 +89,13 @@
   notify: Restart nginx
   tags: profile
 
-- name: Remove NGINX default.conf
-  ansible.builtin.file:
-    path: /etc/nginx/conf.d/default.conf
-    state: absent
+- name: Empty contents of NGINX default.conf
+  ansible.builtin.copy:
+    dest: /etc/nginx/conf.d/default.conf
+    owner: root
+    group: root
+    mode: "0644"
+    content: ""
   notify: Restart nginx
 
 - name: Include systemd restart configuation

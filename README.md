@@ -1,5 +1,7 @@
 ![Ansible Molecule Pipeline](https://github.com/inmotionhosting/ansible-role-nginx_proxy/actions/workflows/main.yml/badge.svg) [![GPL-3.0 License](https://img.shields.io/github/license/inmotionhosting/ansible-role-nginx_proxy.svg?color=blue)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/inmotionhosting/ansible-role-nginx_proxy.svg)](https://github.com/inmotionhosting/ansible-role-nginx_proxy/stargazers)
 
+![InMotion Hosting Ultrastack](https://www.inmotionhosting.com/wp-content/uploads/2024/01/ultrastack-logo-black-vertical.png)
+
 # Ansible Role: Nginx Proxy
 
 Modular Ansible Role for deploying and configuring Nginx as a reverse-proxy

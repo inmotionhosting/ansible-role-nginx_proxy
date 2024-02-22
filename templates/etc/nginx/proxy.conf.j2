@@ -16,6 +16,7 @@ proxy_cache_path            /var/nginx/cache/{{ nginx_cache_name }}
                             inactive={{ nginx_cache_inactive }};
 proxy_cache_use_stale       updating error timeout http_502 http_503 http_504;
 proxy_cache_valid 200       {{ nginx_cache_time_default }}s;
+proxy_cache_valid 301       {{ nginx_cache_time_default }}s;
 proxy_cache_valid 404       {{ nginx_cache_time_404 }}s;
 proxy_cache_valid 500       0;
 proxy_store_access          user:rw group:rw all:r;

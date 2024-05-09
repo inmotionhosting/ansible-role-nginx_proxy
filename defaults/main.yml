@@ -71,7 +71,6 @@ nginx_gzip_min_length: 256
 
 nginx_hsts_enable: false
 nginx_http2_enable: true
-nginx_http2_push_preload: false
 nginx_keepalive_requests: 100
 nginx_keepalive_timeout: 30
 nginx_multi_accept: true

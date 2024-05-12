@@ -79,7 +79,6 @@ Available variables are listed below with their default values (you can also see
 | -------- | ----------- |
 | nginx_hsts_enable | Default: `false`
 | nginx_http2_enable | Default: `true`
-| nginx_http2_push_preload | Default: `true`
 | nginx_keepalive_requests | Default: `100`
 | nginx_keepalive_timeout | Default: `30`
 | nginx_multi_accept | Default: `true`

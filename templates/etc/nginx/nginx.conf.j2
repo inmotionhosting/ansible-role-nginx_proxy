@@ -50,7 +50,6 @@ http {
     server_names_hash_bucket_size 128;
     tcp_nodelay             {{ "on" if nginx_tcp_nodelay | bool else "off" }};
     tcp_nopush              {{ "on" if nginx_tcp_nopush | bool else "off" }};
-    http2_push_preload      {{ "on" if nginx_http2_push_preload | bool else "off" }};
 
     # Client
     client_body_buffer_size {{ nginx_client_body_buffer_size }};

@@ -102,7 +102,7 @@
     dest: /etc/systemd/system/{{ nginx_daemon }}.service.d/imh-override.conf
     content: |
       [Service]
-      ExecStartPre=/usr/bin/rm -f /var/run/nginx_status.sock
+      ExecStartPre=/bin/rm -f /var/run/nginx_status.sock
     owner: root
     group: root
     mode: "0644"

@@ -89,6 +89,25 @@
   notify: Restart nginx
   tags: profile
 
+- name: Creates service directory
+  ansible.builtin.file:
+    path: /etc/systemd/system/{{ nginx_daemon }}.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Create override.conf with ExecStartPre directive
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/{{ nginx_daemon }}.service.d/imh-override.conf
+    content: |
+      [Service]
+      ExecStartPre=/bin/rm -f /var/run/nginx_status.sock
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart nginx
+
 - name: Include systemd restart configuation
   ansible.builtin.include_tasks: systemd.yml
   when: >-

@@ -100,7 +100,7 @@ Available variables are listed below with their default values (you can also see
 | nginx_proxy_buffers | Default: `[4, 32k]`
 | nginx_proxy_buffer_size | Default: `32k`
 | nginx_proxy_busy_buffers_size | Default: `64k`
-| nginx_proxy_cache_key | Default: `"$scheme$request_method$host$request_uri"`
+| nginx_proxy_cache_key | Default: `"$scheme$request_method$http_host$request_uri"`
 | nginx_proxy_connect_timeout | Default: `90`
 | nginx_proxy_hide_header | Default: `["Upgrade"]`
 | nginx_proxy_read_timeout | Default: `90`
